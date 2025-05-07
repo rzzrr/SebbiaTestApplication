@@ -1,6 +1,7 @@
 package com.rzatha.sebbiatestapplication.presentation.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rzatha.sebbiatestapplication.databinding.ActivityCategoriesBinding
@@ -26,6 +27,8 @@ class NewsCategoryActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
 
+        binding.rvCategories.adapter = categoryAdapter
+
         viewModel.newsCategoryList.observe(this) { categoryList ->
             categoryAdapter.submitList(categoryList)
         }
@@ -33,10 +36,15 @@ class NewsCategoryActivity : AppCompatActivity() {
         categoryAdapter.onCategoryClickListener = object: NewsCategoryListAdapter.OnCategoryClickListener{
 
             override fun onCategoryClick(category: NewsCategory) {
+                Log.e(TAG, "onCategoryClick: ${category.name}")
                 // Запуск NewsActivity
             }
 
         }
+    }
+
+    companion object{
+        private const val TAG = "NewsCategoryActivity"
     }
 
 
