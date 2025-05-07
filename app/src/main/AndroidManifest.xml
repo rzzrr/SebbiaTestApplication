@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SebbiaTestApplication"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.activity.CategoriesActivity"
+            android:name=".presentation.activity.NewsCategoryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
