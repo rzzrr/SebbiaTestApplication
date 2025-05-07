@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvNewsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            tools:text="News title"
+            />
+
+        <TextView
+            android:id="@+id/tvNewsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="News description"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/tvNewsDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="01.01.2001"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:textAlignment="textEnd"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

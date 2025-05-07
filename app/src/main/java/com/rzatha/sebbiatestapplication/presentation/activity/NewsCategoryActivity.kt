@@ -36,8 +36,7 @@ class NewsCategoryActivity : AppCompatActivity() {
         categoryAdapter.onCategoryClickListener = object: NewsCategoryListAdapter.OnCategoryClickListener{
 
             override fun onCategoryClick(category: NewsCategory) {
-                Log.e(TAG, "onCategoryClick: ${category.name}")
-                // Запуск NewsActivity
+                startActivity(NewsActivity.newIntent(this@NewsCategoryActivity))
             }
 
         }

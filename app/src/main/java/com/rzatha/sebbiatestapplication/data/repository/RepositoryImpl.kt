@@ -13,7 +13,7 @@ class RepositoryImpl : Repository {
     override suspend fun loadCategories(): List<NewsCategory> =
         mapper.mapNewsCategoryDtoListToNewsCategoryList(apiService.getCategories().categoryList)
 
-    override suspend fun loadNewsPreview(categoryId: Int, page: Int) {
+    override suspend fun loadNewsListByCategory(categoryId: Int, page: Int) {
         TODO("Not yet implemented")
     }
 

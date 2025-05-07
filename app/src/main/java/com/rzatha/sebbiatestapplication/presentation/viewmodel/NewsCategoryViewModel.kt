@@ -18,8 +18,13 @@ class NewsCategoryViewModel: ViewModel() {
             get() = _newsCategoryList
 
     init{
+        loadCategoryList()
+    }
+
+    private fun loadCategoryList(){
         viewModelScope.launch {
-          _newsCategoryList.postValue(LoadCategoriesUseCase(repository).invoke())
+            _newsCategoryList.postValue(LoadCategoriesUseCase(repository).invoke())
         }
     }
+
 }
