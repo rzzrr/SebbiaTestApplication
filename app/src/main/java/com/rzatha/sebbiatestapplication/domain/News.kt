@@ -5,5 +5,5 @@ data class News(
     val title: String,
     val date: String,
     val shortDescription: String,
-    val fullDescription: String = ""
+    val fullDescription: String?
 )

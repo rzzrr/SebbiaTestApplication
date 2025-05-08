@@ -26,8 +26,8 @@ class NewsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupRecyclerView()
-        intent.getIntExtra(EXTRA_CATEGORY_ID, -1).also {
-            if (it!= -1) {
+        intent.getIntExtra(EXTRA_CATEGORY_ID, DEFAULT_INT_VALUE).also {
+            if (it != DEFAULT_INT_VALUE) {
                 viewModel.loadNewsByCategory(it)
             }
         }
@@ -42,7 +42,7 @@ class NewsActivity : AppCompatActivity() {
             adapter.submitList(newsList)
         }
 
-        adapter.onNewsClickListener = object : NewsListAdapter.OnNewsClickListener{
+        adapter.onNewsClickListener = object : NewsListAdapter.OnNewsClickListener {
             override fun onNewsClick(news: News) {
                 //start news detail activity
             }
@@ -52,6 +52,7 @@ class NewsActivity : AppCompatActivity() {
     companion object {
 
         private const val EXTRA_CATEGORY_ID = "extra_category_id"
+        private const val DEFAULT_INT_VALUE = -1
 
         fun newIntent(context: Context, categoryId: Int): Intent {
             return Intent(context, NewsActivity::class.java).apply {
