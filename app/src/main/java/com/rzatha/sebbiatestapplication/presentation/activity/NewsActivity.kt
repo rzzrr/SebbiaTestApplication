@@ -80,7 +80,7 @@ class NewsActivity : AppCompatActivity() {
 
         adapter.onNewsClickListener = object : NewsListAdapter.OnNewsClickListener {
             override fun onNewsClick(news: News) {
-                //start news detail activity
+                startActivity(NewsDetailActivity.newIntent(this@NewsActivity, news.id))
             }
         }
     }
