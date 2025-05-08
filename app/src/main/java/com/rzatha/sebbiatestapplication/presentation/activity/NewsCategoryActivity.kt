@@ -36,7 +36,7 @@ class NewsCategoryActivity : AppCompatActivity() {
         categoryAdapter.onCategoryClickListener = object: NewsCategoryListAdapter.OnCategoryClickListener{
 
             override fun onCategoryClick(category: NewsCategory) {
-                startActivity(NewsActivity.newIntent(this@NewsCategoryActivity, category.id))
+                startActivity(NewsActivity.newIntent(this@NewsCategoryActivity, category))
             }
 
         }

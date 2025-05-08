@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SebbiaTestApplication"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.activity.NewsDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.activity.NewsActivity"
             android:exported="false" />
         <activity

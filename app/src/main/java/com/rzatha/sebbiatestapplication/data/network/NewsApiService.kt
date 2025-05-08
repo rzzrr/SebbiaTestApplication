@@ -8,16 +8,21 @@ import retrofit2.http.Query
 interface NewsApiService {
 
     @GET("/v1/news/categories")
-    suspend fun getCategories(): Response<CategoriesResponse>
+    suspend fun loadCategories(): Response<CategoriesResponse>
 
     @GET("/v1/news/categories/{id}/news")
-    suspend fun getNewsByCategory(
-        @Path(PATH_PARAM_ID) categoryId: Int,
-        @Query(QUERY_PARAM_PAGE) page: Int
+    suspend fun loadNewsByCategory(
+        @Path(PARAM_ID) categoryId: Int,
+        @Query(PARAM_PAGE) page: Int
     ): Response<NewsResponse>
 
+    @GET("/v1/news/details")
+    suspend fun loadNewsById(
+        @Query(PARAM_ID) id: Int
+    ) : Response<NewsDetailResponse>
+
     companion object {
-        private const val PATH_PARAM_ID = "id"
-        private const val QUERY_PARAM_PAGE = "page"
+        private const val PARAM_ID = "id"
+        private const val PARAM_PAGE = "page"
     }
 }

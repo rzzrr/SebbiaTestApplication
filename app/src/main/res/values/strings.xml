@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SebbiaTestApplication</string>
+    <string name="category">Категория</string>
+    <string name="page">Страница</string>
 </resources>

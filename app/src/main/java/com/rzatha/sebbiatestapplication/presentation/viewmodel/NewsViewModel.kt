@@ -17,12 +17,32 @@ class NewsViewModel : ViewModel() {
     val newsList: LiveData<List<News>>
         get() = _newsList
 
-    private var currentPage = 0
+    private var _currentPage = MutableLiveData<Int>(0)
+    val currentPage: LiveData<Int>
+        get() = _currentPage
 
     fun loadNewsByCategory(categoryId: Int) {
         viewModelScope.launch {
-            val listNews = LoadNewsListByCategoryUseCase(repository).invoke(categoryId, currentPage++)
+            val listNews =
+                LoadNewsListByCategoryUseCase(repository).invoke(
+                    categoryId,
+                    _currentPage.value ?: 0
+                )
             _newsList.postValue(listNews)
+        }
+    }
+
+    fun increasePage(categoryId: Int) {
+        _currentPage.value = (_currentPage.value ?: 0) + 1
+        loadNewsByCategory(categoryId)
+    }
+
+
+    fun decreasePage(categoryId: Int) {
+        val current = _currentPage.value ?: 0
+        if (current > 0) {
+            _currentPage.value = current - 1
+            loadNewsByCategory(categoryId)
         }
     }
 

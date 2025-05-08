@@ -13,10 +13,12 @@ class RepositoryImpl : Repository {
     private val mapper = Mapper()
 
     override suspend fun loadCategories(): List<NewsCategory> {
-        val response = apiService.getCategories()
+        val response = apiService.loadCategories()
         if (response.isSuccessful) {
             val categoriesResponse = response.body()
-            return mapper.mapNewsCategoryDtoListToNewsCategoryList(categoriesResponse?.categoryList ?: emptyList())
+            return mapper.mapNewsCategoryDtoListToNewsCategoryList(
+                categoriesResponse?.categoryList ?: emptyList()
+            )
         } else {
             throw HttpException(response)
         }
@@ -26,7 +28,7 @@ class RepositoryImpl : Repository {
         categoryId: Int,
         page: Int
     ): List<News> {
-        val response = apiService.getNewsByCategory(categoryId, page)
+        val response = apiService.loadNewsByCategory(categoryId, page)
         if (response.isSuccessful) {
             val newsResponse = response.body()
             return mapper.mapNewsDtoListToNewsList(newsResponse?.newsList ?: emptyList())
@@ -36,6 +38,14 @@ class RepositoryImpl : Repository {
     }
 
     override suspend fun loadNewsById(newsId: Int): News {
-        TODO("Not yet implemented")
+        val response = apiService.loadNewsById(newsId)
+        if (response.isSuccessful) {
+            response.body()?.also {
+                return mapper.mapNewsDtoToNews(it.news)
+            } ?: throw IllegalArgumentException("response body is null")
+        } else {
+            throw HttpException(response)
+        }
+
     }
 }
