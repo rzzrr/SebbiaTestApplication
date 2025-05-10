@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rzatha.sebbiatestapplication.databinding.NewsItemBinding
 import com.rzatha.sebbiatestapplication.domain.News
+import com.rzatha.sebbiatestapplication.presentation.extensions.formatToUi
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class NewsListAdapter : ListAdapter<News, NewsListAdapter.NewsViewHolder>(
     NewsItemDiffCallback()
@@ -33,7 +36,7 @@ class NewsListAdapter : ListAdapter<News, NewsListAdapter.NewsViewHolder>(
         with(holder.binding) {
             tvNewsTitle.text = news.title
             tvNewsDescription.text = news.shortDescription
-            tvNewsDate.text = news.date
+            tvNewsDate.text = news.date.formatToUi()
 
             root.setOnClickListener {
                 onNewsClickListener?.onNewsClick(news)

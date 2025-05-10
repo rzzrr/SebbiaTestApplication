@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rzatha.sebbiatestapplication.databinding.ActivityNewsDetailBinding
 import com.rzatha.sebbiatestapplication.domain.News
+import com.rzatha.sebbiatestapplication.presentation.extensions.formatToUi
 import com.rzatha.sebbiatestapplication.presentation.viewmodel.NewsDetailViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class NewsDetailActivity : AppCompatActivity() {
 
@@ -25,7 +28,7 @@ class NewsDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         observeViewModel()
-        intent.getIntExtra(EXTRA_ID,DEFAULT_ID).also {
+        intent.getIntExtra(EXTRA_ID, DEFAULT_ID).also {
             if (it != DEFAULT_ID) {
                 viewModel.loadNewsDetail(it)
             }
@@ -41,13 +44,14 @@ class NewsDetailActivity : AppCompatActivity() {
     private fun bindViews(news: News) {
         with(binding) {
             tvNewsTitle.text = news.title
-            tvNewsDate.text = news.date
+            tvNewsDate.text = news.date.formatToUi()
             tvNewsShortDescription.text = news.shortDescription
             tvNewsFullDescription.text =
                 Html.fromHtml(news.fullDescription, Html.FROM_HTML_MODE_COMPACT)
             tvNewsFullDescription.movementMethod = LinkMovementMethod.getInstance()
         }
     }
+
 
 
     companion object {

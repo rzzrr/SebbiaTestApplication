@@ -7,4 +7,6 @@
     android:layout_height="match_parent"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     tools:context=".presentation.activity.NewsCategoryActivity"
-    tools:listitem="@layout/category_item" />
+    tools:listitem="@layout/category_item"
+    android:fitsSystemWindows="true"
+    />
